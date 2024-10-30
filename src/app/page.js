@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from "react";
 import styles from "./cars.module.css";
+import FilterBlock from "@/app/FilterBlock";
 export default function Home() {
 
     const [allCars, setAllCars] = useState([]);
@@ -66,14 +67,17 @@ export default function Home() {
 
     return (
         <div className={styles["main-grid"]}>
-            <div className={styles["side-bar"]}>Side bar</div>
+            <div className={styles["side-bar"]}>
+                <h3>Side bar</h3>
+                <FilterBlock/>
+
+            </div>
             <div className={styles["header"]}>Header</div>
             <div className={styles["main-block"]}>
                 {allCars.map((obj) =>{
                     return(
                         <div className={styles['car-item']}>
                             <p>{obj.MakeName || obj.Make_Name }</p>
-                            <p>{'    '}</p>
                             <p>{obj.ModelName || obj.Model_Name }</p>
                         </div>
                     )
