@@ -21,41 +21,12 @@ export default function Home() {
             const responseData = await response.json()
             const responseData2 = responseData.Results
 
-            // const responseData = await response.json().Results || [];
-                console.log(responseData2)
+            console.log(responseData2)
 
-            // const allCharacters = []
-
-            // for (const people of responseData.results) {
-
-            // console.log(people)
-            // allCharacters.push({
-            // name: people.name,
-            // name: responseData[key].name,
-            // description: responseData[key].description,
-            // price: responseData[key].price,
-            // })
-            // }
             setAllCars(responseData2)
 
         }
 
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await fetch('http https://sw-api.starnavi.io/people/fgafdza');
-        //
-        //         if (!response.ok) {
-        //             throw new Error('Network response was not ok');
-        //         }
-        //
-        //         const data = await response.json();
-        //         console.log('Fetched data:', data); // Log the fetched data here
-        //     } catch (error) {
-        //         console.error('Fetch error:', error);
-        //     }
-        // };
-        //
-        // fetchData();
 
         fetchCharacters().catch(error => {
             console.error('Fetch error:', error);
@@ -70,23 +41,18 @@ export default function Home() {
             <div className={styles["side-bar"]}>
                 <h3>Side bar</h3>
                 <FilterBlock/>
-
             </div>
             <div className={styles["header"]}>Header</div>
             <div className={styles["main-block"]}>
                 {allCars.map((obj) =>{
                     return(
-                        <div className={styles['car-item']}>
+                        <div key={obj.makeId} className={styles['car-item']} >
                             <p>{obj.MakeName || obj.Make_Name }</p>
                             <p>{obj.ModelName || obj.Model_Name }</p>
+
                         </div>
                     )
                 })}
-                {/*<div className={styles["main-display"]}>*/}
-                {/*    <Routes>*/}
-                {/*        <Route path={'dashboard'} element={<Dashboard/>}/>*/}
-                {/*    </Routes>*/}
-                {/*</div>*/}
             </div>
         </div>)
 }
