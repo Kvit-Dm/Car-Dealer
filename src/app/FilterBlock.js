@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
+
+
 
 export default function FilterBlock() {
+
+    const [markdown, setMarkdown] = useState('');
 
     return (
         <React.Fragment>
@@ -16,7 +20,7 @@ export default function FilterBlock() {
             <div>
                 <h4>Model</h4>
                 <div>
-                    <input placeholder={"Search"}/>
+                    <textarea value={markdown} placeholder={"Search"} onChange={e => setMarkdown(e.target.value)}/>
                     <button>
                         {/*<FontAwesomeIcon icon={faSearch}/>*/}
                     </button>
