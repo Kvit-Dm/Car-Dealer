@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 
 export default function FilterBlock() {
@@ -10,6 +11,9 @@ export default function FilterBlock() {
         <React.Fragment>
             <div>
                 <h4>Year</h4>
+                <Slider>
+
+                </Slider>
                 <ol>
                     <li><input type="checkbox"/>2018</li>
                     <li><input type="checkbox"/>2017</li>

@@ -22,10 +22,7 @@ function MainBlock() {
                 // })
             }
             console.log("Latest state:", res.Results);
-
         })
-
-
     }, []);
 
     return (
