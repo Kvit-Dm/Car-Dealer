@@ -3,12 +3,21 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Link from "next/link";
 import styles from './FilterBlock.module.css'
+import {useDispatch, useSelector} from 'react-redux';
+import {setSearchCar, clearSearchCar} from '../redux/searchCarSlice'
 
 
 export default function FilterBlock() {
 
     const [searchValue, setSearchValue] = useState('');
     const [searchYear, setSearchYear] = useState(2024);
+    const dispatch = useDispatch();
+    // const searchValue = useSelector((state) => state.searchCar.value);
+
+    function setSearchHandler(str) {
+        setSearchValue(str)
+        dispatch(setSearchCar(str))
+    }
 
     return (
         <React.Fragment>
@@ -30,8 +39,10 @@ export default function FilterBlock() {
             <div>
                 <h4>Model</h4>
                 <div>
-                    <textarea value={searchValue} placeholder={"Search"}
-                              onChange={e => setSearchValue(e.target.value)}/>
+                    <textarea
+                        value={searchValue}
+                        placeholder={"Search"}
+                        onChange={e => setSearchHandler(e.target.value)}/>
                     <button>
                         {/*<FontAwesomeIcon icon={faSearch}/>*/}
                     </button>
@@ -39,7 +50,7 @@ export default function FilterBlock() {
 
             </div>
             <Link href={'/'}></Link>
-            <button >Next</button>
+            <button className={styles['next-btn']}>Next</button>
 
         </React.Fragment>
     )

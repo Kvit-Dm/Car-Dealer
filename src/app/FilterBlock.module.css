@@ -1,8 +1,15 @@
-.year-slider {
-
-
+.year-slider :nth-child(2) {
+    background-color: unset;
 }
 
-.search-year-block{
+.search-year-block {
     margin: 0 7px;
+}
+
+.next-btn{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    background-color: gray;
+    border-radius: 15px;
 }
