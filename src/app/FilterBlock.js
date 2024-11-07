@@ -1,41 +1,45 @@
 import React, {useState} from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import Link from "next/link";
+import styles from './FilterBlock.module.css'
 
 
 export default function FilterBlock() {
 
-    const [markdown, setMarkdown] = useState('');
+    const [searchValue, setSearchValue] = useState('');
+    const [searchYear, setSearchYear] = useState(2024);
 
     return (
         <React.Fragment>
-            <div>
-                <h4>Year</h4>
-                <Slider>
 
+            <p>{`Year ${searchYear}`} </p>
+            <div className={styles['search-year-block']}>
+                <Slider
+                    reverse={true}
+                    className={styles['year-slider']}
+                    min={2015}
+                    max={2024}
+                    defaultValue={searchYear}
+                    onChange={e => setSearchYear(e)}
+                >
                 </Slider>
-                <ol>
-                    <li><input type="checkbox"/>2018</li>
-                    <li><input type="checkbox"/>2017</li>
-                    <li><input type="checkbox"/>2016</li>
-                    <li><input type="checkbox"/>2015</li>
-                </ol>
             </div>
+
+
             <div>
                 <h4>Model</h4>
                 <div>
-                    <textarea value={markdown} placeholder={"Search"} onChange={e => setMarkdown(e.target.value)}/>
+                    <textarea value={searchValue} placeholder={"Search"}
+                              onChange={e => setSearchValue(e.target.value)}/>
                     <button>
                         {/*<FontAwesomeIcon icon={faSearch}/>*/}
                     </button>
                 </div>
-                <ol>
-                    <li><input type="checkbox"/>Model1</li>
-                    <li><input type="checkbox"/>Model2</li>
-                    <li><input type="checkbox"/>Model3</li>
-                    <li><input type="checkbox"/>Model4</li>
-                </ol>
+
             </div>
+            <Link href={'/'}></Link>
+            <button >Next</button>
 
         </React.Fragment>
     )
