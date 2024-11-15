@@ -10,19 +10,18 @@ function MainBlock() {
     const [allCars, setAllCars] = useState([]);
     const searchCarSrt = useSelector(state => state.searchCar.value);
 
-    function checkForState() {
-        console.log('searchCarSrt', searchCarSrt)
-    }
-
     useEffect(() => {
-        httpService.GetMakesForVehicleType().then(res => {
+        httpService.getMakesForVehicleType().then(res => {
             setAllCars(res.Results)
             console.log("Latest state:", res.Results);
         })
     }, []);
 
-    return (
+    function carItemHandler(e){
+        console.log(e,e.target.outerText)
+    }
 
+    return (
             allCars.filter((obj) =>
                 searchCarSrt === '' || obj.MakeName.toLowerCase().includes(searchCarSrt.toLowerCase())
             ).sort((a, b) => {
@@ -30,7 +29,7 @@ function MainBlock() {
                 const makeB = (b.MakeName || b.Make_Name || "").toLowerCase();
                 return makeA.localeCompare(makeB);
             }).map((obj, index) => {
-                return (<div key={index} className={styles['car-item']}>
+                return (<div key={index} className={styles['car-item']} onClick={(e)=>carItemHandler(e)}>
                     <p>{obj.MakeName || obj.Make_Name}</p>
                     <p>{obj.ModelName || obj.Model_Name}</p>
 

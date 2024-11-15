@@ -15,20 +15,27 @@ const fetchData = async fetchFoo => {
     return response;
 };
 
-const GetMakesForVehicleTypeFun = async () => {
-    const { data } = await $host.get("GetMakesForVehicleType/car?format=json");
+const getMakesForVehicleTypeFun = async () => {
+    const { data } = await $host.get("getMakesForVehicleType/car?format=json");
+    return data;
+};
+
+const getFetchVehicleDataFun = async (makeId,year) => {
+    const { data } = await $host.get(`https://vpic.nhtsa.dot.gov/api/vehicles/getModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`);
     return data;
 };
 
 
-const GetMakesForVehicleType =() => fetchData(GetMakesForVehicleTypeFun) ;
+const getMakesForVehicleType =() => fetchData(getMakesForVehicleTypeFun) ;
+const getFetchVehicleData = (makeId,year) => fetchData(getFetchVehicleDataFun(makeId,year)) ;
 const httpService = {
-    GetMakesForVehicleType
+    getMakesForVehicleType,
+    getFetchVehicleData
 }
 
 
-// const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
-// const response = await http('https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/474/modelyear/2016?format=json');
+// const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getMakesForVehicleType/car?format=json');
+// const response = await http('https://vpic.nhtsa.dot.gov/api/vehicles/getModelsForMakeIdYear/makeId/474/modelyear/2016?format=json');
 
 
 

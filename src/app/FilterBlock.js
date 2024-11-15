@@ -19,6 +19,10 @@ export default function FilterBlock() {
         dispatch(setSearchCar(str))
     }
 
+    function NextBtnHandler () {
+
+    }
+
     return (
         <React.Fragment>
 
@@ -50,7 +54,7 @@ export default function FilterBlock() {
 
             </div>
             <Link href={'/'}></Link>
-            <button className={styles['next-btn']}>Next</button>
+            <button className={styles['next-btn']} onClick={()=>NextBtnHandler()}>Next</button>
 
         </React.Fragment>
     )
