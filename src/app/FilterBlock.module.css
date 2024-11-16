@@ -12,8 +12,10 @@
     margin-top: 10px;
     background-color: gray;
     border-radius: 15px;
+    transition-duration: 0.5s;
 }
 .next-btn-active {
     background-color: rgba(22,198, 12);
     border: 3px solid gray;
+    transition-duration: 0.5s;
 }
