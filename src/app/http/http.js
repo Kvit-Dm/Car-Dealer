@@ -11,7 +11,6 @@ const fetchData = async fetchFoo => {
     } catch (e) {
         console.log(e);
     }
-
     return response;
 };
 
@@ -33,11 +32,7 @@ const httpService = {
     getFetchVehicleData
 }
 
-
 // const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getMakesForVehicleType/car?format=json');
 // const response = await http('https://vpic.nhtsa.dot.gov/api/vehicles/getModelsForMakeIdYear/makeId/474/modelyear/2016?format=json');
-
-
-
 
     export {httpService}
