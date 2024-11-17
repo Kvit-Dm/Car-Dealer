@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer  from './counterSlice';
+
 import searchCarReducer from './searchCarSlice'
+import CarMakesSlice from "@/redux/CarMakesSlice";
 
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
         searchCar: searchCarReducer,
+        chooseCarMakes: CarMakesSlice,
 
     },
     devTools: process.env.NODE_ENV !== 'production',

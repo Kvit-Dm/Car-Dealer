@@ -13,3 +13,7 @@
     background-color: gray;
     border-radius: 15px;
 }
+.next-btn-active {
+    background-color: rgba(22,198, 12);
+    border: 3px solid gray;
+}

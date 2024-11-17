@@ -3,32 +3,29 @@ import React, {Fragment, useEffect, useState} from "react";
 import {httpService} from "@/app/http/http";
 
 
-import {useDispatch, useSelector} from 'react-redux';
-import {isAction} from "@reduxjs/toolkit";
 
+import {useDispatch, useSelector} from 'react-redux';
+import { setCarMakes, clearCarMakes } from '@/redux/CarMakesSlice'
 
 function MainBlock() {
     const [allCars, setAllCars] = useState([]);
-    const [chosenCar, setChosenCar] = useState(NaN);
     const searchCarSrt = useSelector(state => state.searchCar.value);
-
-    function ListModifier(arr) {
-        return arr.map((e) => {
-            e.isActive = false;
-            return e
-        })
-    }
+    const chosenCar = useSelector(state => state.chooseCarMakes.value);
+    const dispatch = useDispatch()
 
     useEffect(() => {
         httpService.getMakesForVehicleType().then(res => {
-
-            setAllCars(ListModifier(res.Results))
+            setAllCars(res.Results)
             console.log("ListArr", ListModifier(res.Results));
         })
     }, []);
 
     function carItemHandler(e, obj) {
-        setChosenCar(obj)
+        if (chosenCar === obj){
+            dispatch(clearCarMakes())
+            return
+        }
+        dispatch(setCarMakes(obj))
         console.log(e, e.target.outerText)
     }
 
@@ -41,11 +38,10 @@ function MainBlock() {
             return makeA.localeCompare(makeB);
         }).map((obj, index) => {
             return (
-                <div key={index} className={styles['car-item']} onClick={(e) => carItemHandler(e, obj, index)}>
-
+                <div key={index} className={`${styles['car-item']}`} onClick={(e) => carItemHandler(e, obj)}>
+                    {chosenCar === obj  && <p>&#9989;</p>}
                     <p>{obj.MakeName || obj.Make_Name}</p>
                     <p>{obj.ModelName || obj.Model_Name}</p>
-
                 </div>)
         })
 
