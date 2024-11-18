@@ -3,9 +3,8 @@ import React, {Fragment, useEffect, useState} from "react";
 import {httpService} from "@/app/http/http";
 
 
-
 import {useDispatch, useSelector} from 'react-redux';
-import { setCarMakes, clearCarMakes } from '@/redux/CarMakesSlice'
+import {setCarMakes, clearCarMakes} from '@/redux/CarMakesSlice'
 
 function MainBlock() {
     const [allCars, setAllCars] = useState([]);
@@ -16,17 +15,17 @@ function MainBlock() {
     useEffect(() => {
         httpService.getMakesForVehicleType().then(res => {
             setAllCars(res.Results)
-            console.log("ListArr", ListModifier(res.Results));
+            // console.log("ListArr", res.Results);
         })
     }, []);
 
     function carItemHandler(e, obj) {
-        if (chosenCar === obj){
+        if (chosenCar === obj) {
             dispatch(clearCarMakes())
             return
         }
         dispatch(setCarMakes(obj))
-        console.log(e, e.target.outerText)
+        // console.log(e, e.target.outerText)
     }
 
     return (
@@ -39,7 +38,7 @@ function MainBlock() {
         }).map((obj, index) => {
             return (
                 <div key={index} className={`${styles['car-item']}`} onClick={(e) => carItemHandler(e, obj)}>
-                    {chosenCar === obj  && <p>&#9989;</p>}
+                    {chosenCar === obj && <p>&#9989;</p>}
                     <p>{obj.MakeName || obj.Make_Name}</p>
                     <p>{obj.ModelName || obj.Model_Name}</p>
                 </div>)

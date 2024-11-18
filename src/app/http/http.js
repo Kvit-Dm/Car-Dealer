@@ -7,7 +7,7 @@ const fetchData = async fetchFoo => {
     let response;
     try {
         response = await fetchFoo();
-        // console.log(response)
+        console.log(response)
     } catch (e) {
         console.log(e);
     }

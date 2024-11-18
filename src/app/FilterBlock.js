@@ -2,15 +2,17 @@ import React, {useState} from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import styles from './FilterBlock.module.css'
+import styles from './FilterBlock.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {setSearchCar} from '../redux/searchCarSlice'
+import {setSearchCar} from '../redux/searchCarSlice';
+import {httpService} from "@/app/http/http";
 
 
 export default function FilterBlock() {
 
     const [searchValue, setSearchValue] = useState('');
     const [searchYear, setSearchYear] = useState(2024);
+    const [searchResult, setSearchResult] = useState(null);
     const chosenCar = useSelector(state => state.chooseCarMakes.value);
     const dispatch = useDispatch();
 
@@ -19,9 +21,16 @@ export default function FilterBlock() {
         dispatch(setSearchCar(str))
     }
 
-    function NextBtnHandler() {
-
+   function NextBtnHandler() {
+        if (chosenCar) {
+            console.log(chosenCar.MakeId, searchYear)
+            httpService.getFetchVehicleData(chosenCar.MakeId, searchYear).then(res => {
+                setSearchResult(res.Results)
+                console.log("res", res.Results);
+            })
+        }
     }
+
 
     function NextBtnStyles() {
         if (chosenCar) {
@@ -32,7 +41,6 @@ export default function FilterBlock() {
 
     return (
         <React.Fragment>
-
             <p>{`Year ${searchYear}`} </p>
             <div className={styles['search-year-block']}>
                 <Slider
@@ -58,6 +66,7 @@ export default function FilterBlock() {
 
             </div>
             <button className={NextBtnStyles()} onClick={() => NextBtnHandler()}>Next</button>
+            <pre>{JSON.stringify(searchResult, null, 2)}</pre>
 
         </React.Fragment>
     )
