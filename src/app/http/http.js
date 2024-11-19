@@ -35,4 +35,4 @@ const httpService = {
 // const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getMakesForVehicleType/car?format=json');
 // const response = await http('https://vpic.nhtsa.dot.gov/api/vehicles/getModelsForMakeIdYear/makeId/474/modelyear/2016?format=json');
 
-    export {httpService}
+export {httpService}
