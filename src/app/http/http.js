@@ -25,8 +25,9 @@ const getFetchVehicleDataFun = async (makeId,year) => {
 };
 
 
+
 const getMakesForVehicleType =() => fetchData(getMakesForVehicleTypeFun) ;
-const getFetchVehicleData = (makeId,year) => fetchData(getFetchVehicleDataFun(makeId,year)) ;
+const getFetchVehicleData = (makeId,year) => fetchData(()=>getFetchVehicleDataFun(makeId,year)) ;
 const httpService = {
     getMakesForVehicleType,
     getFetchVehicleData
