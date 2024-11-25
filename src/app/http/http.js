@@ -1,4 +1,5 @@
 import axios from "axios";
+import {decodeFromBase64} from "next/dist/build/webpack/loaders/utils";
 const $host = axios.create({
     baseURL: 'https://vpic.nhtsa.dot.gov/api/vehicles/',
 })

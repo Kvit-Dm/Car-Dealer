@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Link from 'next/link';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -23,6 +24,7 @@ export default function FilterBlock() {
 
    function NextBtnHandler() {
         if (chosenCar) {
+
             console.log(chosenCar.MakeId, searchYear)
             httpService.getFetchVehicleData(chosenCar.MakeId, searchYear).then(res => {
                 setSearchResult(res.Results)
@@ -66,6 +68,7 @@ export default function FilterBlock() {
 
             </div>
             <button className={NextBtnStyles()} onClick={() => NextBtnHandler()}>Next</button>
+            <Link  href='/result/makeId/year' >link</Link>
             <pre>{JSON.stringify(searchResult, null, 2)}</pre>
 
         </React.Fragment>
