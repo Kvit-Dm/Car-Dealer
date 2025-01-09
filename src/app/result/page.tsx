@@ -1,4 +1,5 @@
-export default function ResultPage(props) {
+export async function generateStaticParams() {
+
   return (
     <p>
       {' '}
