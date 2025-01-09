@@ -4,7 +4,7 @@ import {httpService} from "@/app/http/http";
 
 
 import {useDispatch, useSelector} from 'react-redux';
-import {setCarMakes, clearCarMakes} from '@/redux/CarMakesSlice'
+import {setCarMakes, clearCarMakes} from '@/redux/CarMakesSlice';
 
 function MainBlock() {
     const [allCars, setAllCars] = useState([]);

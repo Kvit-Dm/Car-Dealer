@@ -20,7 +20,8 @@ export default function Home() {
                     <h1>Car Dealer</h1>
                 </div>
                 <div className={styles["main-block"]}>
-                    <Suspense fallback={<h2>Loading...</h2>}>
+                    <Suspense fallback={<Loading/>}>
+                        {/*<AlwaysLoadingComponent/>*/}
                         <MainBlock/>
                     </Suspense>
                 </div>
@@ -28,3 +29,12 @@ export default function Home() {
         </Provider>
     )
 }
+
+function Loading() {
+    return <h2>🌀 Loading...</h2>;
+}
+
+const AlwaysLoadingComponent: React.FC = () => {
+    // Simulate an infinite loading state by throwing a Promise
+    throw new Promise(() => {});
+};

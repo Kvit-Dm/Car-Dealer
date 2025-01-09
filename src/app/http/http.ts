@@ -4,7 +4,10 @@ const $host = axios.create({
     baseURL: 'https://vpic.nhtsa.dot.gov/api/vehicles/',
 })
 
-const fetchData = async fetchFoo => {
+type FetchFunction = () => Promise<any>;
+
+const fetchData = async (fetchFoo: FetchFunction) => {
+    debugger
     let response;
     try {
         response = await fetchFoo();
