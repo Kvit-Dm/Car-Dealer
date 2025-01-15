@@ -7,7 +7,6 @@ const $host = axios.create({
 type FetchFunction = () => Promise<any>;
 
 const fetchData = async (fetchFoo: FetchFunction) => {
-  debugger;
   let response;
   try {
     response = await fetchFoo();

@@ -3,16 +3,18 @@ import Link from 'next/link';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+
 import styles from './FilterBlock.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchCar } from '../redux/searchCarSlice';
+import { setFilterData} from '@/redux/filterDataSlice'
+import { setSearchCar } from '@/redux/searchCarSlice';
 import { httpService } from '@/app/http/http';
 
 export default function FilterBlock() {
   const [searchValue, setSearchValue] = useState('');
   const [searchYear, setSearchYear] = useState(2024);
-  const [searchResult, setSearchResult] = useState(null);
   const chosenCar = useSelector((state) => state.chooseCarMakes.value);
+  // const researchtoggle = useSelector((state) => state.chooseCarMakes.value);
   const dispatch = useDispatch();
 
   function setSearchHandler(str) {
@@ -23,12 +25,13 @@ export default function FilterBlock() {
   function NextBtnHandler() {
     if (chosenCar) {
       console.log(chosenCar.MakeId, searchYear);
-      httpService
-        .getFetchVehicleData(chosenCar.MakeId, searchYear)
-        .then((res) => {
-          setSearchResult(res.Results);
-          console.log('res', res.Results);
-        });
+
+        dispatch(setFilterData({
+            searchId: chosenCar.MakeId,
+            searchYear: searchYear,
+            toggleDisplayResult: true,
+        }));
+
     }
   }
 
@@ -67,7 +70,7 @@ export default function FilterBlock() {
         Next
       </button>
       <Link href="/result/makeId/year">link</Link>
-      <pre>{JSON.stringify(searchResult, null, 2)}</pre>
+
     </React.Fragment>
   );
 }

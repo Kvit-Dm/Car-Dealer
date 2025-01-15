@@ -20,9 +20,12 @@ export default function Home() {
           <h1>Car Dealer</h1>
         </div>
         <div className={styles['main-block']}>
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading/>}>
             {/*<AlwaysLoadingComponent/>*/}
-            <MainBlock />
+            <main>
+              <MainBlock/>
+            </main>
+            {/*<MainBlock/>*/}
           </Suspense>
         </div>
       </div>
