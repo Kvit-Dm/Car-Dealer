@@ -15,20 +15,13 @@ function MainBlock() {
 
     const filterData = useSelector((state) => state.filterData.value);
 
-
-
     const dispatch = useDispatch();
-
-
-
 
     useEffect(() => {
         httpService.getMakesForVehicleType().then((res) => {
             setAllCars(res.Results);
             // console.log("ListArr", res.Results);
         });
-
-
     }, []);
 
     function renderResult (){
