@@ -6,6 +6,10 @@
   margin: 0 7px;
 }
 
+.search-name-input-alert{
+  border: 1px solid red;
+}
+
 .next-btn {
   width: 100%;
   height: 40px;

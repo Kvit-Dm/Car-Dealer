@@ -24,15 +24,15 @@ function MainBlock() {
         });
     }, []);
 
-    function renderResult (){
-            console.log('research will be called')
-            httpService
-                .getFetchVehicleData(filterData.searchId, filterData.searchYear)
-                .then((res) => {
-                    setSearchResult(res.Results);
-                    console.log('res', res.Results);
-                });
-            dispatch(setDisplayToFalse())
+    function renderResult() {
+        console.log('research will be called')
+        httpService
+            .getFetchVehicleData(filterData.searchId, filterData.searchYear)
+            .then((res) => {
+                setSearchResult(res.Results);
+                console.log('res', res.Results);
+            });
+        dispatch(setDisplayToFalse())
     }
 
     function carItemHandler(e, obj) {
@@ -43,10 +43,15 @@ function MainBlock() {
         dispatch(setCarMakes(obj));
         // console.log(e, e.target.outerText)
     }
-    if (filterData.toggleDisplayResult === true) { renderResult ()}
-    return (
-        <React.Fragment>
-            {allCars.filter(
+
+    // if permission given, send request and render it
+    if (filterData.toggleDisplayResult === true) {
+        renderResult()
+    }
+
+    function displayResult() {
+        return (
+            allCars.filter(
                 (obj) =>
                     searchCarSrt === '' ||
                     obj.MakeName.toLowerCase().includes(searchCarSrt.toLowerCase())
@@ -71,7 +76,14 @@ function MainBlock() {
                     }
                 )
 
-            }
+        )
+
+    }
+
+
+    return (
+        <React.Fragment>
+            {displayResult()}
             <pre>{JSON.stringify(searchResult, null, 2)}</pre>
         </React.Fragment>
 
